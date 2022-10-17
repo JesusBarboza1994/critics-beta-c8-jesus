@@ -32,8 +32,11 @@
 
           </ul>
         </nav>
-        <%=image_tag "icons/menu.svg", class: "navbar__menu-icon"%>
-        <%=image_tag "icons/close.svg", class: "navbar__menu-icon-close"%>
+          <%= link_to 'Create account', new_user_path%>
+          <%= link_to 'Login', new_user_path%>
+
+          <%=image_tag "icons/menu.svg", class: "navbar__menu-icon"%>
+          <%=image_tag "icons/close.svg", class: "navbar__menu-icon-close"%>
       </div>
     </header>
     <%= yield %>

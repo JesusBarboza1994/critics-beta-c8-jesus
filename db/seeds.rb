@@ -16,6 +16,8 @@ User.find_or_create_by(username: "user_test") do |user|
   user.birth_date = "1990-01-01"
   user.first_name = "User"
   user.last_name = "Test"
+  user.password = "qwerty"
+  user.password_confirmation = "qwerty"
 end
 
 puts "Seeding companies"
