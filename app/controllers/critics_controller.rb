@@ -36,6 +36,8 @@ class CriticsController < ApplicationController
 
     @critic = criticable.critics.new(critic_params)
 
+    current_user = User.find_by(id: session[:user_id])
+    @critic.user = current_user
     if @critic.save
       redirect_to @critic
     else
@@ -65,6 +67,6 @@ class CriticsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def critic_params
-    params.require(:critic).permit(:title, :body, :user_id)
+    params.require(:critic).permit(:title, :body)
   end
 end
