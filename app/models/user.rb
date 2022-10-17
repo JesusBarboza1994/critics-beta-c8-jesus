@@ -11,4 +11,5 @@ class User < ApplicationRecord
 
   # Association
   has_many :critics, dependent: :destroy
+  has_secure_password
 end
