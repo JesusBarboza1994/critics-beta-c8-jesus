@@ -32,8 +32,15 @@
 
           </ul>
         </nav>
-          <%= link_to 'Create account', new_user_path%>
-          <%= link_to 'Login', login_path%>
+        <div>
+          <% if current_user %>
+            <p>Welcome, <%= current_user.username %> </p>
+            <%= link_to "Logout", sessions_path, data: { turbo_method: :delete }%>
+          <% else %>
+            <%= link_to 'Create account', new_user_path%>
+            <%= link_to 'Login', login_path%>
+          <% end%>
+        </div>
 
           <%=image_tag "icons/menu.svg", class: "navbar__menu-icon"%>
           <%=image_tag "icons/close.svg", class: "navbar__menu-icon-close"%>
