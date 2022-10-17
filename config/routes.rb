@@ -21,8 +21,12 @@ Rails.application.routes.draw do
   resources :companies do
     resources :critics
   end
-  resources :users
+  resources :users, only: :new
   get "/login", to: "sessions#new"
   post "/sessions", to: "sessions#create"
   delete "/sessions", to: "sessions#destroy"
+
+  get "/profile", to: "users#edit"
+  patch "/profile", to: "users#update"
+  post "/profile", to: "users#create"
 end

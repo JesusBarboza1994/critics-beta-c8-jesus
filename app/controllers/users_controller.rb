@@ -14,17 +14,17 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # GET /users/:id/edit
-  def edit
-    @user = User.find(params[:id])
-  end
+  # GET /users/:id/edit (ya no!)
+  # GET /profile
+  def edit; end
 
-  # POST /users
+  # POST /profile
   def create
     @user = User.new(user_params)
-
+    
     if @user.save
-      redirect_to @user
+      log_in(@user)
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,10 +32,10 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/:id
   def update
-    @user = User.find(params[:id])
+    @user = current_user
 
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
     end

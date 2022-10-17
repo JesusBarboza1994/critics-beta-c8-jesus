@@ -9,18 +9,17 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
       # Estamos registrados
-      session[:user_id] = user.id
+      log_in(user)
 
       redirect_to root_path
     else
-      flash[:message] = "Invalid credentials"
+      flash.now[:error] = "Invalid credentials"
       render "new", status: :unprocessable_entity
     end
   end
 
   def destroy
-    session.delete(:user_id)
-    flash[:message] = "Thanks for using Critics beta"
+    logout
     redirect_to root_path, status: :see_other
   end
 end
